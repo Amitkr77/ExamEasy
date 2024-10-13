@@ -6,11 +6,12 @@ const webToken = JsonWebToken
 
 export const register = async (req, res) => {
     try {
-        const {username, email, password } = req.body;
+        const { username, email, phone, password } = req.body;
         const saltRounds = 10;
         const hashPassword = await bcrypt.hash(password, saltRounds)
         const user = new userModel({
-            username : username,
+            username: username,
+            phone: phone,
             email: email,
             password: hashPassword
         });
@@ -45,7 +46,7 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: 'Invalid password' })
         }
 
-        const token = webToken.sign({ id: user._id}, process.env.JWT_SECRET, { expiresIn: '1h' })
+        const token = webToken.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
         res.status(200).json({ token })
 

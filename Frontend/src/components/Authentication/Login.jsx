@@ -17,11 +17,11 @@ const Login = ({ isOpen, onClose }) => {
     }
     if (!password) {
       error.password = "Password is required";
-    } else if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-        password
-      )
-    ) {
+    // } else if (
+    //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+    //     password
+    //   )
+    // ) {
       error.password = "Invalid password";
     }
     return error;
